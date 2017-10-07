@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>maildrop管理</title>
+        <script src="assets/vue-2.4.2.js"></script>
+        <script src="assets/lodash-4.17.4.js"></script>
+        <link rel="stylesheet" href="assets/wing.min.css"/>
+    </head>
+    <body>
+        <h1 class="center">maildrop管理</h1>
+        <div id="maildrop-list">
+            <div class="row text-center">
+                <div class="col-2">Time</div>
+                <div class="col-3">Header</div>
+                <div class="col-3">Regex</div>
+                <div class="col-3">Destination</div>
+                <div class="col-1">Delete/Add</div>
+            </div>
+            <div class="row text-center" id="addlist">
+                <div class="col-2"></div>
+                <div class="col-3"><input name="header" v-model="SearchHeader" placeholder="Header"></div>
+                <div class="col-3"><input name="regex" v-model="SearchRegex" placeholder="Regex"></div>
+                <div class="col-3">
+                    <select name="destination">
+                        <option value="JUNKMAIL">JUNKMAIL</option>
+                        <option value="MERUMAGA">MERUMAGA</option>
+                        <option value="GMAIL">GMAIL</option>
+                        <option value="SMART">SMART</option>
+                    </select>
+                </div>
+                <div class="col-1"><button v-on:click="Add()">add</button></div>
+            </div>
+            <template v-for="fitem in sortFList">
+            <div class="row text-center">
+                <div class="col-2">{{ fitem.time }}</div>
+                <div class="col-3">{{ fitem.header }}</div>
+                <div class="col-3">{{ fitem.regex }}</div>
+                <div class="col-3">{{ fitem.destination }}</div>
+                <div class="col-1"><button v-on:click="Del(fitem)">del</button></div>
+            </div>
+            </template>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
